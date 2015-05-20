@@ -13,14 +13,17 @@
 
 gcdataproject <- function(){
 
+  require(dplyr)
+  require(plyr)
+
 ## Read in the subjects, features, and activities for the train data
-setwd("C:/Users/rr046302/Documents/Bill's Stuff/Coursera/Getting and Cleaning Data/Getting and Cleaning Data Course Project/gettingandcleaningdata/UCI HAR Dataset/train")
+setwd("C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015/UCI HAR Dataset/train")
 train_subjects <- read.table("subject_train.txt")
 train_features <- read.table("X_train.txt")
 train_activity <- read.table("y_train.txt")
 
 ## Read in the subjects, features, and activities for the test data
-setwd("C:/Users/rr046302/Documents/Bill's Stuff/Coursera/Getting and Cleaning Data/Getting and Cleaning Data Course Project/gettingandcleaningdata/UCI HAR Dataset/test")
+setwd("C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015/UCI HAR Dataset/test")
 test_features <- read.table("X_test.txt")
 test_subjects <- read.table("subject_test.txt")
 test_activity <- read.table("y_test.txt")
@@ -30,29 +33,26 @@ features <- rbind(test_features, train_features)
 subjects <- rbind(test_subjects, train_subjects)
 activities <- rbind(test_activity, train_activity)
 
+## merge the features subjects and activities data
 merged_data <- cbind(features, subjects, activities)
 
-setwd("C:/Users/rr046302/Documents/Bill's Stuff/Coursera/Getting and Cleaning Data/Getting and Cleaning Data Course Project/gettingandcleaningdata/UCI HAR Dataset")
+## add the colnames to the data
+setwd("C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015/UCI HAR Dataset")
 features_names <- read.table("features.txt")
 activity_labels <- read.table("activity_labels.txt", col.names = c("activity", "activity_name"))
 
 colnames(merged_data) <- features_names[,2]
-
 colnames(merged_data)[562] <- "subject"
-
 colnames(merged_data)[563] <- "activity"
 
 ## select only the variables that include mean or standard deviation in their variable name
 ## also select with the subject and activity columns
-
 selected_data <- merged_data[,grepl("mean|std|subject|activity", names(merged_data))]
 
 ## add the activity names back to the activity variable
-
-require(plyr)
 selected_data <- join(selected_data, activity_labels, by = "activity", match = "first")
 
-# clean up the variable names
+## clean up the variable names using gsub
 names  = colnames(selected_data)
 for (i in 1:length(names)) 
 {
@@ -70,17 +70,16 @@ for (i in 1:length(names))
   names[i] = gsub("GyroMag","GyroMagnitude",names[i])
 };
 
+## add the cleaned up names back to the selected_data
 colnames(selected_data) <- names
 
-require(dplyr)
-setwd("C:/Users/rr046302/Documents/Bill's Stuff/Coursera/Getting and Cleaning Data/Getting and Cleaning Data Course Project/gettingandcleaningdata")
-
+## write the final data set to a file and place it in the global environment so it is available for use
+setwd("C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015")
 final_data <- selected_data %>% group_by(subject, activity_name) %>% summarise_each(funs(mean))
-
 write.table(final_data,file = "finalDataSet.txt",row.names = FALSE)
-
 assign("final_data", final_data, envir = .GlobalEnv)
 
+## Print a message that the dataset is avaialble for use
 print("Getting and Cleaning Data Course Project final_data is ready")
 
 }
