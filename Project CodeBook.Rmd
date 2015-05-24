@@ -1,22 +1,119 @@
 ---
 title: "GCD Project CodeBook May 2015"
 author: "BillSeliger"
-date: "Saturday, May 09, 2015"
+date: "Saturday, May 24, 2015"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+###This is the CodeBook for the final (cleaned and transformed) dataset for the JHU/Coursera Getting and Cleaning Data Course Project for May 2015.  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+For more details on the origin dataset see the UC Irvine Machine Learning Repository <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>.
 
-```{r}
-summary(cars)
-```
+###run_analysis.R script performs the following functions:
+####  1. Merges the training and the test sets to create one data set.
+####  2. Extracts only the measurements on the mean and standard deviation for each measurement.
+####  3. Uses descriptive activity names to name the activities in the data set
+####  4. Appropriately labels the data set with descriptive variable names.
+#### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-You can also embed plots, for example:
+Calling the function gcdataproject() will perform the above functions and create the tidy dataset "final_data" in an R dataframe in the global environment and will also write the file "finalDataSet.txt" in the following directory "C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015"
 
-```{r, echo=FALSE}
-pairs(cars)
-```
+###The final data consists of 180 observations of 82 variables.  The variables are:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+####subject
+The subject number (1-30) for which the observation was recorded
+
+####activity_name
+The name of the activity the subject was performing when the observation was made.  One of 6 activities: WALKING,
+WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+
+####activity_number
+The activity number that corresponds to the name activity in the prior variable
+
+####Measurement Variables 4-82
+Variables 4-82 were recorded using the 3-axial accelerometer and gyroscope on a Samsung Galazy S II smartphone and represent only the mean and standard deviations of variables.  Using the accelerometer and gyroscope on the smartphone 3-axial acceleration and 3-axial angular velocity were captured at a rate of 50Hz (50 times per second)  and preprocessed using additional noise filters.  The following variables are normalized and bounded within [-1,1].
+
+| Variable | Description
+-----------|--------------
+| timeBodyAccMean-X | Mean time for acceleration of body in X axis
+| timeBodyAccMean-Y | Mean time for acceleration of body in Y axis
+|  timeBodyAccMean-Z | Mean time for acceleration of body in Z axis
+| timeBodyAcc-std-X | Standard deviation for acceleration of body in X axis
+| timeBodyAcc-std-Y | Standard deviation for acceleration of body in Y axis
+| timeBodyAcc-std-Z | Standard deviation for acceleration of body in Z axis
+| timeGravityAccMean-X | Mean time for acceleration of gravity in X axis
+| timeGravityAccMean-Y | Mean time for acceleration of gravity in Y axis
+| timeGravityAccMean-Z | Mean time for acceleration of gravity in Z axis
+| timeGravityAcc-std-X | Standard deviation time for acceleration of gravity in X axis
+| timeGravityAcc-std-Y | Standard deviation time for acceleration of gravity in Y axis
+| timeGravityAcc-std-Z | Standard deviation time for acceleration of gravity in Z axis
+| timeBodyAccJerkMean-X | Mean time for acceleration of body jerk in X axis
+| timeBodyAccJerkMean-Y | Mean time for acceleration of body jerk in Y axis
+| timeBodyAccJerkMean-Z | Mean time for acceleration of body jerk in Z axis
+| timeBodyAccJerk-std-X | Standard deviation time for acceleration of body jerk in X axis
+| timeBodyAccJerk-std-Y | Standard deviation time for acceleration of body jerk in X axis
+| timeBodyAccJerk-std-Z | Standard deviation time for acceleration of body jerk in X axis
+| timeBodyGyroMean-X | Mean time for body gyroscopic measure in X axis
+| timeBodyGyroMean-Y | Mean time for body gyroscopic measure in Y axis
+| timeBodyGyroMean-Z | Mean time for body gyroscopic measure in Z axis
+| timeBodyGyro-std-X | Standard deviation time for body gyroscopic measure in X axis
+| timeBodyGyro-std-Y | Standard deviation time for body gyroscopic measure in Y axis
+| timeBodyGyro-std-Z | Standard deviation time for body gyroscopic measure in Z axis
+| timeBodyGyroJerkMean-X | Mean time for body jerk gyroscopic measure in X axis
+| timeBodyGyroJerkMean-Y | Mean time for body jerk gyroscopic measure in Y axis
+| timeBodyGyroJerkMean-Z | Mean time for body jerk gyroscopic measure in Z axis
+| timeBodyGyroJerk-std-X | Standard deviation time for body jerk gyroscopic measure in X axis
+| timeBodyGyroJerk-std-Y | Standard deviation time for body jerk gyroscopic measure in Y axis
+| timeBodyGyroJerk-std-Z | Standard deviation time for body jerk gyroscopic measure in Z axis
+| timeBodyAccMagnitudeMean | Mean magnitude of body acceleration
+| timeBodyAccMagnitudeStdDev | Standard deviation of magnitude of body acceleration
+| timeGravityAccMagnitudeMean | Mean magnitude of gravity acceleration
+| timeGravityAccMagnitudeStdDev | Standard deviation of gravity acceleration
+| timeBodyAccJerkMagnitudeMean | Mean magnitude of jerk gravity acceleration
+| timeBodyAccJerkMagnitudeStdDev | Standard deviation of magnitude for jerk gravity acceleration
+| timeBodyGyroMagnitudeMean | Mean magnitude of body gyroscopic measure
+| timeBodyGyroMagnitudeStdDev | Standard deviation of magnitude of body gyroscopic measure
+| timeBodyGyroJerkMagnitudeMean | Mean magnitude of jerk body gyroscopic measure
+| timeBodyGyroJerkMagnitudeStdDev | Standard deviation of magnitude of jerk body gyroscopic measure
+| freqBodyAccMean-X | Mean frequency for body acceleration in X axis
+| freqBodyAccMean-Y | Mean frequency for body acceleration in Y axis
+| freqBodyAccMean-Z | Mean frequency for body acceleration in Z axis
+| freqBodyAcc-std-X | Standard deviation of frequency for body acceleration in X axis
+| freqBodyAcc-std-Y | Standard deviation of frequency for body acceleration in Y axis
+| freqBodyAcc-std-Z | Standard deviation of frequency for body acceleration in Z axis
+| freqBodyAccMeanFreq-X | Mean frequency for body acceleration frequency in X axis
+| freqBodyAccMeanFreq-Y | Mean frequency for body acceleration frequency in Y axis
+| freqBodyAccMeanFreq-Z | Mean frequency for body acceleration frequency in Z axis
+| freqBodyAccJerkMean-X | Mean frequency for jerk body acceleration in X axis
+| freqBodyAccJerkMean-Y | Mean frequency for jerk body acceleration in Y axis
+| freqBodyAccJerkMean-Z | Mean frequency for jerk body acceleration in Z axis
+| freqBodyAccJerk-std-X | Standard deviation of frequency for jerk body acceleration in X axis
+| freqBodyAccJerk-std-Y | Standard deviation of frequency for jerk body acceleration in Y axis
+| freqBodyAccJerk-std-Z | Standard deviation of frequency for jerk body acceleration in Z axis
+| freqBodyAccJerkMeanFreq-X | Mean of frequency for jerk body acceleration in X axis
+| freqBodyAccJerkMeanFreq-Y | Mean of frequency for jerk body acceleration in Y axis
+| freqBodyAccJerkMeanFreq-Z | Mean of frequency for jerk body acceleration in Z axis
+| freqBodyGyroMean-X | Mean of frequency for body gyroscope measure in X axis
+| freqBodyGyroMean-Y | Mean of frequency for body gyroscope measure in Y axis
+| freqBodyGyroMean-Z | Mean of frequency for body gyroscope measure in Z axis
+| freqBodyGyro-std-X | Standard deviation of frequency for body gyroscope measure in X axis
+| freqBodyGyro-std-Y | Standard deviation of frequency for body gyroscope measure in Y axis
+| freqBodyGyro-std-Z | Standard deviation of frequency for body gyroscope measure in Z axis
+| freqBodyGyroMeanFreq-X | Mean frequency for body gyroscopic frequency measure in X axis
+| freqBodyGyroMeanFreq-Y | Mean frequency for body gyroscopic frequency measure in Y axis
+| freqBodyGyroMeanFreq-Z | Mean frequency for body gyroscopic frequency measure in Z axis
+| freqBodyAccMagnitudeMean | Mean of magnitude of frequency for body acceleration
+| freqBodyAccMagnitudeStdDev | Standard deviation of magnitude of frequency for body acceleration
+| freqBodyAccMagnitudeMeanFreq | Mean of magnitude of frequency for body acceleration
+| freqBodyAccJerkMagnitudeMean | Mean of magnitude for jerk body acceleration
+| freqBodyAccJerkMagnitudeStdDev | Standard deviation of magnitude for jerk body acceleration
+| freqBodyAccJerkMagnitudeMeanFreq | Mean of magnitude for jerk body acceleration frequency
+| freqBodyGyroMagnitudeMean | Mean of magnitude of frequency for body gyroscopic measure
+| freqBodyGyroMagnitudeStdDev | Standard deviation of magnitude of frequency for body gyroscopic measure
+| freqBodyGyroMagnitudeMeanFreq | Mean of magnitude of frequency for frequency of body gyroscopic measure
+| freqBodyGyroJerkMagnitudeMean | Mean of magnitude of frequency for jerk body gyroscopic measure
+| freqBodyGyroJerkMagnitudeStdDev | Standard deviation of magnitude of frequency for jerk body gyroscopic measure
+| freqBodyGyroJerkMagnitudeMeanFreq | Mean of magnitude of frequency for jerk body gyroscopic frequency measure
+
+
+

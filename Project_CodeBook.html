@@ -63,125 +63,376 @@ img {
 <div id="header">
 <h1 class="title">GCD Project CodeBook May 2015</h1>
 <h4 class="author"><em>BillSeliger</em></h4>
-<h4 class="date"><em>Saturday, May 19, 2015</em></h4>
+<h4 class="date"><em>Saturday, May 24, 2015</em></h4>
 </div>
 
 
-<div id="this-is-the-codebook-for-the-final-cleaned-and-transformed-dataset-for-the-getting-and-cleaning-data-course-project-for-may-2015." class="section level3">
-<h3>This is the CodeBook for the final (cleaned and transformed) dataset for the Getting and Cleaning Data Course Project for May 2015.</h3>
-<p>For more details on this dataset see the UC Irvine Machine Learning Repository <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" class="uri">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>.</p>
+<div id="this-is-the-codebook-for-the-final-cleaned-and-transformed-dataset-for-the-jhucoursera-getting-and-cleaning-data-course-project-for-may-2015." class="section level3">
+<h3>This is the CodeBook for the final (cleaned and transformed) dataset for the JHU/Coursera Getting and Cleaning Data Course Project for May 2015.</h3>
+<p>For more details on the origin dataset see the UC Irvine Machine Learning Repository <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" class="uri">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a>.</p>
 </div>
-<div id="this-data-consists-of-180-observations-of-82-variables.-the-variables-are-as-follows" class="section level2">
-<h2>This data consists of 180 observations of 82 variables. The variables are as follows:</h2>
-<div id="subject" class="section level3">
-<h3>subject</h3>
+<div id="run_analysis.r-script-performs-the-following-functions" class="section level3">
+<h3>run_analysis.R script performs the following functions:</h3>
+<div id="merges-the-training-and-the-test-sets-to-create-one-data-set." class="section level4">
+<h4>1. Merges the training and the test sets to create one data set.</h4>
+</div>
+<div id="extracts-only-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement." class="section level4">
+<h4>2. Extracts only the measurements on the mean and standard deviation for each measurement.</h4>
+</div>
+<div id="uses-descriptive-activity-names-to-name-the-activities-in-the-data-set" class="section level4">
+<h4>3. Uses descriptive activity names to name the activities in the data set</h4>
+</div>
+<div id="appropriately-labels-the-data-set-with-descriptive-variable-names." class="section level4">
+<h4>4. Appropriately labels the data set with descriptive variable names.</h4>
+</div>
+<div id="from-the-data-set-in-step-4-creates-a-second-independent-tidy-data-set-with-the-average-of-each-variable-for-each-activity-and-each-subject." class="section level4">
+<h4>5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.</h4>
+<p>Calling the function gcdataproject() will perform the above functions and create the tidy dataset “final_data” in an R dataframe in the global environment and will also write the file “finalDataSet.txt” in the following directory “C:/Users/rr046302/Documents/Coursera/GettingandcleaningdataMay2015”</p>
+</div>
+</div>
+<div id="the-final-data-consists-of-180-observations-of-82-variables.-the-variables-are" class="section level3">
+<h3>The final data consists of 180 observations of 82 variables. The variables are:</h3>
+<div id="subject" class="section level4">
+<h4>subject</h4>
 <p>The subject number (1-30) for which the observation was recorded</p>
 </div>
-<div id="activity_name" class="section level3">
-<h3>activity_name</h3>
-<p>The activity the subject was performing when the observation was made. One of 6 activiies 1. WALKING 2. WALKING_UPSTAIRS 3. WALKING_DOWNSTAIRS 4. SITTING 5. STANDING 6. LAYING</p>
+<div id="activity_name" class="section level4">
+<h4>activity_name</h4>
+<p>The name of the activity the subject was performing when the observation was made. One of 6 activities: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING</p>
 </div>
-<div id="activity_number" class="section level3">
-<h3>activity_number</h3>
+<div id="activity_number" class="section level4">
+<h4>activity_number</h4>
 <p>The activity number that corresponds to the name activity in the prior variable</p>
 </div>
-<div id="variables-4-82" class="section level3">
-<h3>Variables 4-82</h3>
-<p>The variables retained from the original data represent only the mean and standard deviations of variables as recorded by a smartphone and preprocessed by applying noise filters. These variables breakdown as follows:</p>
-<div id="time-or-frequency" class="section level4">
-<h4>Time or Frequency</h4>
-</div>
-<div id="body-or-gravity" class="section level4">
-<h4>Body or Gravity</h4>
-</div>
-<div id="acc-gyro-accjerk-gyrojerk-accmagnitude-gyrojerkmagnitude-etc." class="section level4">
-<h4>Acc, Gyro, AccJerk, GyroJerk, AccMagnitude, GyroJerkMagnitude, etc.</h4>
-<p>the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag)</p>
-<p>The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix ‘t’ to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.</p>
-<p>Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).</p>
-<p>Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the ‘f’ to indicate frequency domain signal</p>
-<ol start="4" style="list-style-type: decimal">
-<li>timeBodyAccMean-X</li>
-<li>timeBodyAccMean-Y</li>
-<li>timeBodyAccMean-Z</li>
-<li>timeBodyAcc-std-X</li>
-<li>timeBodyAcc-std-Y</li>
-<li>timeBodyAcc-std-Z</li>
-<li>timeGravityAccMean-X</li>
-<li>timeGravityAccMean-Y</li>
-<li>timeGravityAccMean-Z</li>
-<li>timeGravityAcc-std-X</li>
-<li>timeGravityAcc-std-Y</li>
-<li>timeGravityAcc-std-Z</li>
-<li>timeBodyAccJerkMean-X</li>
-<li>timeBodyAccJerkMean-Y</li>
-<li>timeBodyAccJerkMean-Z</li>
-<li>timeBodyAccJerk-std-X</li>
-<li>timeBodyAccJerk-std-Y</li>
-<li>timeBodyAccJerk-std-Z</li>
-<li>timeBodyGyroMean-X</li>
-<li>timeBodyGyroMean-Y</li>
-<li>timeBodyGyroMean-Z</li>
-<li>timeBodyGyro-std-X</li>
-<li>timeBodyGyro-std-Y</li>
-<li>timeBodyGyro-std-Z</li>
-<li>timeBodyGyroJerkMean-X</li>
-<li>timeBodyGyroJerkMean-Y</li>
-<li>timeBodyGyroJerkMean-Z</li>
-<li>timeBodyGyroJerk-std-X</li>
-<li>timeBodyGyroJerk-std-Y</li>
-<li>timeBodyGyroJerk-std-Z</li>
-<li>timeBodyAccMagnitudeMean</li>
-<li>timeBodyAccMagnitudeStdDev</li>
-<li>timeGravityAccMagnitudeMean</li>
-<li>timeGravityAccMagnitudeStdDev</li>
-<li>timeBodyAccJerkMagnitudeMean</li>
-<li>timeBodyAccJerkMagnitudeStdDev</li>
-<li>timeBodyGyroMagnitudeMean</li>
-<li>timeBodyGyroMagnitudeStdDev</li>
-<li>timeBodyGyroJerkMagnitudeMean</li>
-<li>timeBodyGyroJerkMagnitudeStdDev</li>
-<li>freqBodyAccMean-X</li>
-<li>freqBodyAccMean-Y</li>
-<li>freqBodyAccMean-Z</li>
-<li>freqBodyAcc-std-X</li>
-<li>freqBodyAcc-std-Y</li>
-<li>freqBodyAcc-std-Z</li>
-<li>freqBodyAccMeanFreq-X</li>
-<li>freqBodyAccMeanFreq-Y</li>
-<li>freqBodyAccMeanFreq-Z</li>
-<li>freqBodyAccJerkMean-X</li>
-<li>freqBodyAccJerkMean-Y</li>
-<li>freqBodyAccJerkMean-Z</li>
-<li>freqBodyAccJerk-std-X</li>
-<li>freqBodyAccJerk-std-Y</li>
-<li>freqBodyAccJerk-std-Z</li>
-<li>freqBodyAccJerkMeanFreq-X</li>
-<li>freqBodyAccJerkMeanFreq-Y</li>
-<li>freqBodyAccJerkMeanFreq-Z</li>
-<li>freqBodyGyroMean-X</li>
-<li>freqBodyGyroMean-Y</li>
-<li>freqBodyGyroMean-Z</li>
-<li>freqBodyGyro-std-X</li>
-<li>freqBodyGyro-std-Y</li>
-<li>freqBodyGyro-std-Z</li>
-<li>freqBodyGyroMeanFreq-X</li>
-<li>freqBodyGyroMeanFreq-Y</li>
-<li>freqBodyGyroMeanFreq-Z</li>
-<li>freqBodyAccMagnitudeMean</li>
-<li>freqBodyAccMagnitudeStdDev</li>
-<li>freqBodyAccMagnitudeMeanFreq</li>
-<li>freqBodyAccJerkMagnitudeMean</li>
-<li>freqBodyAccJerkMagnitudeStdDev</li>
-<li>freqBodyAccJerkMagnitudeMeanFreq</li>
-<li>freqBodyGyroMagnitudeMean</li>
-<li>freqBodyGyroMagnitudeStdDev</li>
-<li>freqBodyGyroMagnitudeMeanFreq</li>
-<li>freqBodyGyroJerkMagnitudeMean</li>
-<li>freqBodyGyroJerkMagnitudeStdDev</li>
-<li>freqBodyGyroJerkMagnitudeMeanFreq</li>
-</ol>
-</div>
+<div id="measurement-variables-4-82" class="section level4">
+<h4>Measurement Variables 4-82</h4>
+<p>Variables 4-82 were recorded using the 3-axial accelerometer and gyroscope on a Samsung Galazy S II smartphone and represent only the mean and standard deviations of variables. Using the accelerometer and gyroscope on the smartphone 3-axial acceleration and 3-axial angular velocity were captured at a rate of 50Hz (50 times per second) and preprocessed using additional noise filters. The following variables are normalized and bounded within [-1,1].</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">timeBodyAccMean-X</td>
+<td align="left">Mean time for acceleration of body in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccMean-Y</td>
+<td align="left">Mean time for acceleration of body in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccMean-Z</td>
+<td align="left">Mean time for acceleration of body in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAcc-std-X</td>
+<td align="left">Standard deviation for acceleration of body in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAcc-std-Y</td>
+<td align="left">Standard deviation for acceleration of body in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAcc-std-Z</td>
+<td align="left">Standard deviation for acceleration of body in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeGravityAccMean-X</td>
+<td align="left">Mean time for acceleration of gravity in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeGravityAccMean-Y</td>
+<td align="left">Mean time for acceleration of gravity in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeGravityAccMean-Z</td>
+<td align="left">Mean time for acceleration of gravity in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeGravityAcc-std-X</td>
+<td align="left">Standard deviation time for acceleration of gravity in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeGravityAcc-std-Y</td>
+<td align="left">Standard deviation time for acceleration of gravity in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeGravityAcc-std-Z</td>
+<td align="left">Standard deviation time for acceleration of gravity in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccJerkMean-X</td>
+<td align="left">Mean time for acceleration of body jerk in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccJerkMean-Y</td>
+<td align="left">Mean time for acceleration of body jerk in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccJerkMean-Z</td>
+<td align="left">Mean time for acceleration of body jerk in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccJerk-std-X</td>
+<td align="left">Standard deviation time for acceleration of body jerk in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccJerk-std-Y</td>
+<td align="left">Standard deviation time for acceleration of body jerk in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccJerk-std-Z</td>
+<td align="left">Standard deviation time for acceleration of body jerk in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroMean-X</td>
+<td align="left">Mean time for body gyroscopic measure in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroMean-Y</td>
+<td align="left">Mean time for body gyroscopic measure in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroMean-Z</td>
+<td align="left">Mean time for body gyroscopic measure in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyro-std-X</td>
+<td align="left">Standard deviation time for body gyroscopic measure in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyro-std-Y</td>
+<td align="left">Standard deviation time for body gyroscopic measure in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyro-std-Z</td>
+<td align="left">Standard deviation time for body gyroscopic measure in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroJerkMean-X</td>
+<td align="left">Mean time for body jerk gyroscopic measure in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroJerkMean-Y</td>
+<td align="left">Mean time for body jerk gyroscopic measure in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroJerkMean-Z</td>
+<td align="left">Mean time for body jerk gyroscopic measure in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroJerk-std-X</td>
+<td align="left">Standard deviation time for body jerk gyroscopic measure in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroJerk-std-Y</td>
+<td align="left">Standard deviation time for body jerk gyroscopic measure in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroJerk-std-Z</td>
+<td align="left">Standard deviation time for body jerk gyroscopic measure in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccMagnitudeMean</td>
+<td align="left">Mean magnitude of body acceleration</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of body acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">timeGravityAccMagnitudeMean</td>
+<td align="left">Mean magnitude of gravity acceleration</td>
+</tr>
+<tr class="even">
+<td align="left">timeGravityAccMagnitudeStdDev</td>
+<td align="left">Standard deviation of gravity acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyAccJerkMagnitudeMean</td>
+<td align="left">Mean magnitude of jerk gravity acceleration</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyAccJerkMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude for jerk gravity acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroMagnitudeMean</td>
+<td align="left">Mean magnitude of body gyroscopic measure</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of body gyroscopic measure</td>
+</tr>
+<tr class="odd">
+<td align="left">timeBodyGyroJerkMagnitudeMean</td>
+<td align="left">Mean magnitude of jerk body gyroscopic measure</td>
+</tr>
+<tr class="even">
+<td align="left">timeBodyGyroJerkMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of jerk body gyroscopic measure</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccMean-X</td>
+<td align="left">Mean frequency for body acceleration in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccMean-Y</td>
+<td align="left">Mean frequency for body acceleration in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccMean-Z</td>
+<td align="left">Mean frequency for body acceleration in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAcc-std-X</td>
+<td align="left">Standard deviation of frequency for body acceleration in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAcc-std-Y</td>
+<td align="left">Standard deviation of frequency for body acceleration in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAcc-std-Z</td>
+<td align="left">Standard deviation of frequency for body acceleration in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccMeanFreq-X</td>
+<td align="left">Mean frequency for body acceleration frequency in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccMeanFreq-Y</td>
+<td align="left">Mean frequency for body acceleration frequency in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccMeanFreq-Z</td>
+<td align="left">Mean frequency for body acceleration frequency in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerkMean-X</td>
+<td align="left">Mean frequency for jerk body acceleration in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerkMean-Y</td>
+<td align="left">Mean frequency for jerk body acceleration in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerkMean-Z</td>
+<td align="left">Mean frequency for jerk body acceleration in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerk-std-X</td>
+<td align="left">Standard deviation of frequency for jerk body acceleration in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerk-std-Y</td>
+<td align="left">Standard deviation of frequency for jerk body acceleration in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerk-std-Z</td>
+<td align="left">Standard deviation of frequency for jerk body acceleration in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerkMeanFreq-X</td>
+<td align="left">Mean of frequency for jerk body acceleration in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerkMeanFreq-Y</td>
+<td align="left">Mean of frequency for jerk body acceleration in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerkMeanFreq-Z</td>
+<td align="left">Mean of frequency for jerk body acceleration in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroMean-X</td>
+<td align="left">Mean of frequency for body gyroscope measure in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyroMean-Y</td>
+<td align="left">Mean of frequency for body gyroscope measure in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroMean-Z</td>
+<td align="left">Mean of frequency for body gyroscope measure in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyro-std-X</td>
+<td align="left">Standard deviation of frequency for body gyroscope measure in X axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyro-std-Y</td>
+<td align="left">Standard deviation of frequency for body gyroscope measure in Y axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyro-std-Z</td>
+<td align="left">Standard deviation of frequency for body gyroscope measure in Z axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroMeanFreq-X</td>
+<td align="left">Mean frequency for body gyroscopic frequency measure in X axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyroMeanFreq-Y</td>
+<td align="left">Mean frequency for body gyroscopic frequency measure in Y axis</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroMeanFreq-Z</td>
+<td align="left">Mean frequency for body gyroscopic frequency measure in Z axis</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccMagnitudeMean</td>
+<td align="left">Mean of magnitude of frequency for body acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of frequency for body acceleration</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccMagnitudeMeanFreq</td>
+<td align="left">Mean of magnitude of frequency for body acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerkMagnitudeMean</td>
+<td align="left">Mean of magnitude for jerk body acceleration</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyAccJerkMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude for jerk body acceleration</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyAccJerkMagnitudeMeanFreq</td>
+<td align="left">Mean of magnitude for jerk body acceleration frequency</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyroMagnitudeMean</td>
+<td align="left">Mean of magnitude of frequency for body gyroscopic measure</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of frequency for body gyroscopic measure</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyroMagnitudeMeanFreq</td>
+<td align="left">Mean of magnitude of frequency for frequency of body gyroscopic measure</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroJerkMagnitudeMean</td>
+<td align="left">Mean of magnitude of frequency for jerk body gyroscopic measure</td>
+</tr>
+<tr class="even">
+<td align="left">freqBodyGyroJerkMagnitudeStdDev</td>
+<td align="left">Standard deviation of magnitude of frequency for jerk body gyroscopic measure</td>
+</tr>
+<tr class="odd">
+<td align="left">freqBodyGyroJerkMagnitudeMeanFreq</td>
+<td align="left">Mean of magnitude of frequency for jerk body gyroscopic frequency measure</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
